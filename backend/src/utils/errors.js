@@ -54,3 +54,15 @@ export class UpstreamServiceError extends AppError {
     super(`${service} error: ${message}`, 502, 'UPSTREAM_SERVICE_ERROR');
   }
 }
+
+export class EmbeddingError extends AppError {
+  constructor(message = 'Failed to generate embeddings for this content') {
+    super(message, 502, 'EMBEDDING_ERROR');
+  }
+}
+
+export class LLMError extends AppError {
+  constructor(message = 'Failed to generate a response from the language model') {
+    super(message, 502, 'LLM_ERROR');
+  }
+}
