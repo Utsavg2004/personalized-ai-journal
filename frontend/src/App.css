@@ -1,0 +1,194 @@
+.journal-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2.5rem;
+  background-color: #1e293b;
+  border-bottom: 1px solid #334155;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  font-size: 1.75rem;
+}
+
+.brand h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0;
+  color: #f1f5f9;
+}
+
+.status-pill {
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-pill.online {
+  background-color: #064e3b;
+  color: #34d399;
+  border: 1px solid #059669;
+}
+
+.status-pill.offline {
+  background-color: #450a0a;
+  color: #f87171;
+  border: 1px solid #dc2626;
+}
+
+.status-pill.checking {
+  background-color: #3b2b00;
+  color: #fbbf24;
+  border: 1px solid #d97706;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.welcome-banner {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.welcome-banner h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.welcome-banner p {
+  color: #94a3b8;
+  font-size: 1.05rem;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.status-card {
+  background-color: #1e293b;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #334155;
+  text-align: left;
+}
+
+.card-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #38bdf8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.status-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.15rem;
+  color: #f1f5f9;
+}
+
+.status-card p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.status-card code {
+  background-color: #0f172a;
+  color: #e2e8f0;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.phase-card {
+  background-color: #1e293b;
+  border: 1px solid #22c55e;
+  border-radius: 0.75rem;
+  padding: 1.75rem;
+  text-align: left;
+}
+
+.phase-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.phase-badge {
+  background-color: #14532d;
+  color: #86efac;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.phase-header h3 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.2rem;
+}
+
+.phase-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.phase-checklist li {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 1.5rem;
+  border-top: 1px solid #334155;
+  color: #64748b;
+  font-size: 0.875rem;
+}
