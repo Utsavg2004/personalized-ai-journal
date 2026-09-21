@@ -48,6 +48,7 @@ describe('Journal creation -> chunking -> embedding -> vector storage', () => {
   let mockEmbedding;
 
   before(async () => {
+    process.env.NODE_ENV = 'test';
     mockSupabase = await startMockSupabaseServer();
     mockEmbedding = await startMockEmbeddingServer({ dimension: 8 });
 

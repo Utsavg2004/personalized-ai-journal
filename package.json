@@ -9,7 +9,10 @@
     "test:backend": "npm test --prefix backend",
     "dev:backend": "npm run dev --prefix backend",
     "dev:frontend": "npm run dev --prefix frontend",
-    "build:frontend": "npm run build --prefix frontend"
+    "build:frontend": "npm run build --prefix frontend",
+    "db:login": "npx supabase login",
+    "db:link": "npx supabase link --project-ref",
+    "db:push": "npx supabase db push"
   },
   "keywords": [
     "rag",

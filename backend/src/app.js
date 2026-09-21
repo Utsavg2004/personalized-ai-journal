@@ -6,6 +6,9 @@ import { logger } from './utils/logger.js';
 import { NotFoundError } from './utils/errors.js';
 import { errorHandler } from './middleware/error.middleware.js';
 import healthRoutes from './routes/health.routes.js';
+import chatRoutes from './routes/chat.routes.js';
+import authRoutes from './routes/auth.routes.js';
+import journalRoutes from './routes/journal.routes.js';
 
 const app = express();
 
@@ -60,6 +63,9 @@ app.get('/', (req, res) => {
 
 // Mount modular API routes
 app.use('/api', healthRoutes);
+app.use('/api', chatRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/journals', journalRoutes);
 
 // 404 Handler for undefined routes
 app.use((req, res, next) => {

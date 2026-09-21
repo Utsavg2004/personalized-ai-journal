@@ -102,6 +102,21 @@ export const updateJournal = async ({ userId, id, updates }) => {
     throw new NotFoundError('Journal');
   }
 
+  // If content or title changed, re-sync embeddings to prevent stale vectors
+  if (updates.content !== undefined || updates.title !== undefined) {
+    try {
+      await deleteJournalEmbeddings({ userId, journalId: id });
+      await ingestJournalChunks({
+        journalId: id,
+        userId,
+        title: row.title,
+        content: row.content,
+      });
+    } catch (err) {
+      logger.error(`Failed to re-index embeddings for updated journal ${id}`, err);
+    }
+  }
+
   return toJournalDTO(row);
 };
 

@@ -1,5 +1,7 @@
 import { EmbeddingError } from '../../utils/errors.js';
 
+const DEFAULT_EMBEDDING_TIMEOUT_MS = 30_000;
+
 /**
  * OpenAI-compatible embeddings endpoint (`POST {baseUrl}/embeddings`).
  * Used for both the `openai` and `openrouter` EMBEDDING_PROVIDER values,
@@ -7,6 +9,9 @@ import { EmbeddingError } from '../../utils/errors.js';
  */
 export const createOpenAICompatibleProvider = ({ baseUrl, apiKey, model }) => ({
   embedBatch: async (texts) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), DEFAULT_EMBEDDING_TIMEOUT_MS);
+
     let response;
     try {
       response = await fetch(`${baseUrl.replace(/\/$/, '')}/embeddings`, {
@@ -16,9 +21,15 @@ export const createOpenAICompatibleProvider = ({ baseUrl, apiKey, model }) => ({
           Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({ model, input: texts }),
+        signal: controller.signal,
       });
     } catch (err) {
+      if (err.name === 'AbortError') {
+        throw new EmbeddingError(`Embedding provider request timed out after ${DEFAULT_EMBEDDING_TIMEOUT_MS}ms`);
+      }
       throw new EmbeddingError(`Embedding provider request failed: ${err.message}`);
+    } finally {
+      clearTimeout(timer);
     }
 
     if (!response.ok) {

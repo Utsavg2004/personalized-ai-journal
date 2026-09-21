@@ -12,6 +12,7 @@ let mockServer;
 let mockEmbeddingServer;
 
 before(async () => {
+  process.env.NODE_ENV = 'test';
   mockServer = await startMockSupabaseServer();
   process.env.SUPABASE_URL = mockServer.url;
   process.env.SUPABASE_ANON_KEY = 'test-anon-key';

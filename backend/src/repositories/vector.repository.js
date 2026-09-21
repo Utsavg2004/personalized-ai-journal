@@ -94,10 +94,13 @@ export const searchSimilar = async ({
     similarity: row.similarity,
   }));
 
-  // Counts and IDs only -- chunk_text is raw journal content and must never
-  // be logged.
+  // Counts, IDs, and similarity scores only -- chunk_text is raw journal
+  // content and must never be logged.
   logger.rag('retrieved_chunks', { count: results.length });
   logger.rag('source_ids', { journalChunkIds: results.map((r) => r.id) });
+  logger.rag('similarity_scores', {
+    scores: results.map((r) => ({ id: r.id, similarity: r.similarity })),
+  });
 
   return results;
 };
