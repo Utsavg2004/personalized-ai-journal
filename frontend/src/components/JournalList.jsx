@@ -34,8 +34,8 @@ export const JournalList = ({ onSelectJournal, currentJournalId }) => {
       if (currentJournalId === id) {
         onSelectJournal(null);
       }
-    } catch (err) {
-      alert(err.message || 'Failed to delete journal');
+    } catch {
+      // api client already shows an error toast
     }
   };
 

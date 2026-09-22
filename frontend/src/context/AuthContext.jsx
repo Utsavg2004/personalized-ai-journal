@@ -52,14 +52,11 @@ export const AuthProvider = ({ children }) => {
     return res;
   };
 
+  // Deliberately does NOT persist a token/session here: registering an
+  // account should not sign the user in. They land back on /login and must
+  // authenticate explicitly with the credentials they just created.
   const register = async (email, password) => {
     const res = await api.post('/auth/register', { email, password });
-    const accessToken = res.session?.accessToken || res.session?.access_token;
-    if (accessToken) {
-      localStorage.setItem('token', accessToken);
-      setToken(accessToken);
-    }
-    setUser(res.user);
     return res;
   };
 

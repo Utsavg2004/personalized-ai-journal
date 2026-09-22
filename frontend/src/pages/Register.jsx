@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { showToast } from '../utils/toast';
 
 export const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const { register } = useAuth();
   const navigate = useNavigate();
 
@@ -18,7 +19,11 @@ export const Register = () => {
 
     try {
       await register(email, password);
-      navigate('/dashboard');
+      showToast('Account created successfully. Please log in to continue.', 'success');
+      // Registering does not sign the user in — send them to /login (with
+      // their email pre-filled) to authenticate with the credentials they
+      // just created, instead of dropping them straight into the dashboard.
+      navigate('/login', { state: { email } });
     } catch (err) {
       setError(err.message || 'Failed to register');
     } finally {

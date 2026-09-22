@@ -223,8 +223,9 @@ Switching between OpenRouter and Ollama requires changing a single environment v
 ## 15. OpenRouter
 
 - **Endpoint**: `https://openrouter.ai/api/v1/chat/completions`
-- **Default Model**: `meta-llama/llama-3.1-8b-instruct:free`
+- **Default Model**: `meta-llama/llama-3.1-8b-instruct:free` (a free-tier alias, `openrouter/free`, also works)
 - **Error Handling**: Captures HTTP 429 rate limits, extracts `Retry-After` headers, and surfaces them as typed `RateLimitError`.
+- **Switching to it**: `backend/.env.example` ships with Ollama as the active `LLM_PROVIDER` and a commented-out `LLM - OpenRouter` block right below it. Get a free API key from [openrouter.ai/keys](https://openrouter.ai/keys), then in `backend/.env` comment out the four Ollama `LLM_*` lines and uncomment the OpenRouter ones — no other code changes are required.
 
 ---
 
@@ -260,10 +261,19 @@ EMBEDDING_MODEL=text-embedding-3-small
 EMBEDDING_DIMENSION=1536
 
 # LLM Provider (openrouter or ollama)
-LLM_PROVIDER=openrouter
-LLM_BASE_URL=https://openrouter.ai/api/v1
-LLM_API_KEY=your-openrouter-key
-LLM_MODEL_NAME=meta-llama/llama-3.1-8b-instruct:free
+LLM_PROVIDER=ollama
+LLM_BASE_URL=http://localhost:11434
+LLM_API_KEY=ollama
+LLM_MODEL_NAME=llama3.2
+
+# LLM - OpenRouter (alternative to Ollama above)
+# Comment out the Ollama LLM_* lines and uncomment these to run the LLM
+# through OpenRouter's cloud API instead. Get a free key at
+# https://openrouter.ai/keys
+# LLM_PROVIDER=openrouter
+# LLM_BASE_URL=https://openrouter.ai/api/v1
+# LLM_API_KEY=sk-or-v1-your-openrouter-key-here
+# LLM_MODEL_NAME=openrouter/free
 
 # Conversation History
 ENABLE_CONVERSATION_HISTORY=true

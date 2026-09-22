@@ -19,7 +19,7 @@ const envSchema = z.object({
 
   // LLM Provider
   LLM_PROVIDER: z.enum(['openrouter', 'ollama']).default('openrouter'),
-  LLM_BASE_URL: z.string().default('https://openrouter.ai/api/v1'),
+  LLM_BASE_URL: z.string().default('https://openrouter.ai/api/v1/chat/completions'),
   LLM_API_KEY: z.string().optional().default(''),
   LLM_MODEL_NAME: z.string().default('meta-llama/llama-3.1-8b-instruct:free'),
 
